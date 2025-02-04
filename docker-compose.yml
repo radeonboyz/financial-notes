@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  apps:
+    build:
+      stdin_open: true
+      tty: true 
+      context: .
+      dockerfile: Dockerfile
+    container_name: apps
+    ports:
+      - "8000:8000"
+    networks:
+      - app-net
+
+  db:
+    image: mysql
+    container_name: databases
+    environment:
+      MYSQL_USER: robi
+      MYSQL_PASSWORD: robi8741
+      MYSQL_DATABASE: db_catatan
+      MYSQL_ROOT_PASSWORD: robi8741
+    volumes:
+      - db-vol:/var/lib/mysql
+    networks:
+      - app-net
+
+volumes:
+  db-vol:
+
+networks:
+  app-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+
