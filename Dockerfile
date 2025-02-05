@@ -15,7 +15,8 @@ RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /app
 COPY . /app
+COPY .env.example .env
 RUN composer update
 RUN php artisan key:generate
 
-expose 8000
+EXPOSE 8000
