@@ -7,5 +7,9 @@ pipeline{
             }
 
         }
+
+        stage('2nd commnad'){
+            steps{
+                sh 'echo "hello world"'
     }
 }
